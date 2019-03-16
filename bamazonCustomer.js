@@ -51,7 +51,7 @@ function promptUserPurchase() {
 		// console.log('Customer has selected: \n    item_id = '  + input.item_id + '\n    quantity = ' + input.quantity);
 
 		var item = input.item_id;
-		var quantity = input.quantity;
+		var quantity = input.StockQuantity;
 
 		// Query db to confirm that the given item ID exists in the desired quantity
 		var queryStr = 'SELECT * FROM products WHERE ?';
@@ -73,18 +73,18 @@ function promptUserPurchase() {
 				// console.log('productData.stock_quantity = ' + productData.stock_quantity);
 
 				// If the quantity requested by the user is in stock
-				if (quantity <= productData.stock_quantity) {
+				if (quantity <= productData.StockQuantity) {
 					console.log('Congratulations, the product you requested is in stock! Placing order!');
 
 					// Construct the updating query string
-					var updateQueryStr = 'UPDATE products SET stock_quantity = ' + (productData.stock_quantity - quantity) + ' WHERE item_id = ' + item;
+					var updateQueryStr = 'UPDATE products SET StockQuantity = ' + (productData.StockQuantity - Quantity) + ' WHERE item_id = ' + item;
 					// console.log('updateQueryStr = ' + updateQueryStr);
 
 					// Update the inventory
 					connection.query(updateQueryStr, function(err, data) {
 						if (err) throw err;
 
-						console.log('Your oder has been placed! Your total is $' + productData.price * quantity);
+						console.log('Your oder has been placed! Your total is $' + productData.price * Quantity);
 						console.log('Thank you for shopping with us!');
 						console.log("\n---------------------------------------------------------------------\n");
 
@@ -121,9 +121,9 @@ function displayInventory() {
 		for (var i = 0; i < data.length; i++) {
 			strOut = '';
 			strOut += 'Item ID: ' + data[i].item_id + '  //  ';
-			strOut += 'Product Name: ' + data[i].product_name + '  //  ';
-			strOut += 'Department: ' + data[i].department_name + '  //  ';
-			strOut += 'Price: $' + data[i].price + '\n';
+			strOut += 'Product Name: ' + data[i].ProductName + '  //  ';
+			strOut += 'Department: ' + data[i].DepartmentName + '  //  ';
+			strOut += 'Price: $' + data[i].Price + '\n';
 
 			console.log(strOut);
 		}
