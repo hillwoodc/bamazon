@@ -73,7 +73,7 @@ function promptUserPurchase() {
 				// console.log('productData.stock_quantity = ' + productData.stock_quantity);
 
 				// If the quantity requested by the user is in stock
-				if (quantity <= productData.StockQuantity) {
+				if (Quantity <= productData.StockQuantity) {
 					console.log('Congratulations, the product you requested is in stock! Placing order!');
 
 					// Construct the updating query string
@@ -84,7 +84,7 @@ function promptUserPurchase() {
 					connection.query(updateQueryStr, function(err, data) {
 						if (err) throw err;
 
-						console.log('Your oder has been placed! Your total is $' + productData.price * Quantity);
+						console.log('Your oder has been placed! Your total is $' + productData.Price * Quantity);
 						console.log('Thank you for shopping with us!');
 						console.log("\n---------------------------------------------------------------------\n");
 
