@@ -1,2 +1,2 @@
 # bamazon
-Bamazon
+bamazon

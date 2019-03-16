@@ -80,10 +80,10 @@ function displayInventory() {
 		for (var i = 0; i < data.length; i++) {
 			strOut = '';
 			strOut += 'Item ID: ' + data[i].item_id + '  //  ';
-			strOut += 'Product Name: ' + data[i].ProductName + '  //  ';
-			strOut += 'Department: ' + data[i].DepartmentName + '  //  ';
-			strOut += 'Price: $' + data[i].Price + '  //  ';
-			strOut += 'Quantity: ' + data[i].StockQuantity + '\n';
+			strOut += 'Product Name: ' + data[i].product_name + '  //  ';
+			strOut += 'Department: ' + data[i].department_name + '  //  ';
+			strOut += 'Price: $' + data[i].price + '  //  ';
+			strOut += 'Quantity: ' + data[i].stock_quantity + '\n';
 
 			console.log(strOut);
 		}
@@ -113,10 +113,10 @@ function displayLowInventory() {
 		for (var i = 0; i < data.length; i++) {
 			strOut = '';
 			strOut += 'Item ID: ' + data[i].item_id + '  //  ';
-			strOut += 'Product Name: ' + data[i].ProductName + '  //  ';
-			strOut += 'Department: ' + data[i].DepartmentName + '  //  ';
-			strOut += 'Price: $' + data[i].Price + '  //  ';
-			strOut += 'Quantity: ' + data[i].StockQuantity + '\n';
+			strOut += 'Product Name: ' + data[i].product_name + '  //  ';
+			strOut += 'Department: ' + data[i].department_name + '  //  ';
+			strOut += 'Price: $' + data[i].price + '  //  ';
+			strOut += 'Quantity: ' + data[i].stock_quantity + '\n';
 
 			console.log(strOut);
 		}
@@ -201,14 +201,14 @@ function addInventory() {
 				console.log('Updating Inventory...');
 
 				// Construct the updating query string
-				var updateQueryStr = 'UPDATE products SET stock_quantity = ' + (productData.StockQuantity + addQuantity) + ' WHERE item_id = ' + item;
+				var updateQueryStr = 'UPDATE products SET stock_quantity = ' + (productData.stock_quantity + addQuantity) + ' WHERE item_id = ' + item;
 				// console.log('updateQueryStr = ' + updateQueryStr);
 
 				// Update the inventory
 				connection.query(updateQueryStr, function(err, data) {
 					if (err) throw err;
 
-					console.log('Stock count for Item ID ' + item + ' has been updated to ' + (productData.StockQuantity + addQuantity) + '.');
+					console.log('Stock count for Item ID ' + item + ' has been updated to ' + (productData.stock_quantity + addQuantity) + '.');
 					console.log("\n---------------------------------------------------------------------\n");
 
 					// End the database connection
@@ -227,33 +227,33 @@ function createNewProduct() {
 	inquirer.prompt([
 		{
 			type: 'input',
-			name: 'ProductName',
+			name: 'product_name',
 			message: 'Please enter the new product name.',
 		},
 		{
 			type: 'input',
-			name: 'DepartmentName',
+			name: 'department_name',
 			message: 'Which department does the new product belong to?',
 		},
 		{
 			type: 'input',
-			name: 'Price',
+			name: 'price',
 			message: 'What is the price per unit?',
 			validate: validateNumeric
 		},
 		{
 			type: 'input',
-			name: 'StockQuantity',
+			name: 'stock_quantity',
 			message: 'How many items are in stock?',
 			validate: validateInteger
 		}
 	]).then(function(input) {
 		// console.log('input: ' + JSON.stringify(input));
 
-		console.log('Adding New Item: \n    ProductName = ' + input.ProductName + '\n' +  
-									   '    DepartmentName = ' + input.DepartmentName + '\n' +  
-									   '    Price = ' + input.Price + '\n' +  
-									   '    StockQuantity = ' + input.StockQuantity);
+		console.log('Adding New Item: \n    product_name = ' + input.product_name + '\n' +  
+									   '    department_name = ' + input.department_name + '\n' +  
+									   '    price = ' + input.price + '\n' +  
+									   '    stock_quantity = ' + input.stock_quantity);
 
 		// Create the insertion query string
 		var queryStr = 'INSERT INTO products SET ?';
@@ -271,13 +271,13 @@ function createNewProduct() {
 	})
 }
 
-// runBamazon will execute the main application logic
-function runBamazon() {
-	// console.log('___ENTER runBamazon___');
+// runbamazon will execute the main application logic
+function runbamazon() {
+	// console.log('___ENTER runbamazon___');
 
 	// Prompt manager for input
 	promptManagerAction();
 }
 
 // Run the application logic
-runBamazon();
+runbamazon();

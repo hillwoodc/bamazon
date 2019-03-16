@@ -6,14 +6,14 @@ USE bamazon;
 
 CREATE TABLE products (
 	item_id INTEGER(11) AUTO_INCREMENT NOT NULL,
-	ProductName VARCHAR(50) NOT NULL,
-	DepartmentName VARCHAR(50) NOT NULL,
-	Price DECIMAL(10,2) NOT NULL,
-	StockQuantity INTEGER(11) NOT NULL,
+	product_name VARCHAR(50) NOT NULL,
+	department_name VARCHAR(50) NOT NULL,
+	price DECIMAL(10,2) NOT NULL,
+	stock_quantity INTEGER(11) NOT NULL,
 	PRIMARY KEY (item_id)
 );
 
-INSERT INTO products (ProductName,DepartmentName,Price,StockQuantity)
+INSERT INTO products (product_name,department_name,price,stock_quantity)
 VALUES ("Supreme Box Logo Crewneck", "Clothing", 189.99, 50),
  ("AntiSocialSocialClub Hoodie", "Clothing", 89.99, 100),
  ("Supreme Box Logo Hoodie", "Clothing", 199.99, 20),
